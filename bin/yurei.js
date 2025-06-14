@@ -9,8 +9,10 @@ import fs from 'fs';
 import ora from 'ora';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Worker } from 'worker_threads';
+// import { Worker } from 'worker_threads';
+import { glob } from 'glob';
 import { asciiWelcome } from '../utils/asciiWelcome.js';
+
 
 const program = new Command();
 program.name('yurei').description('CLI sayangku yang paling manis').version('2.0.0');
@@ -22,6 +24,7 @@ const __dirname = path.dirname(__filename);
 
 program
   .command('menu')
+  .alias('M')
   .description('Tampilkan menu interaktif')
   .action(async () => {
     await asciiWelcome();
@@ -30,6 +33,7 @@ program
 
 program
   .command('whoami')
+  .alias('W')
   .description('Lihat identitas CLI')
   .action(() => {
     console.log(chalk.blueBright(`👻 Nama tool ini: Yurei CLI\n❤️ Dibuat oleh: Sayang Ku\n✨ Versi: 2.0.0`));
@@ -61,6 +65,7 @@ async function menuUtama() {
   setTimeout(menuUtama, 1000);
 }
 
+// === Fungsi: Buka Browser === //
 async function bukaBrowser() {
   const browserList = [
     { name: '🌐 Chrome', path: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' },
@@ -88,39 +93,59 @@ async function bukaBrowser() {
     choices: browserList.map((b) => ({ name: b.name, value: b.path })),
   });
 
-  exec(`"${selectedBrowser}" "${url}"`);
+  exec(`"${selectedBrowser}" "www.${url}.com"`);
 }
 
-function runScanThread(folderPath) {
-  return new Promise((resolve, reject) => {
-    const worker = new Worker(path.join(__dirname, '../Worker/ScanWorker.js'), {
-      workerData: { path: folderPath },
-    });
-    worker.on('message', resolve);
-    worker.on('error', reject);
-    worker.on('exit', (code) => code !== 0 && reject(new Error(`Worker exited: ${code}`)));
-  });
-}
-
+//  === Fungsi: Jalankan Game === //
 async function jalankanGame() {
-  const paths = ['C:/Games', 'D:/Games', 'C:/Program Files/Steam'].filter(Boolean);
-  const spinner = ora('🔍 Mencari game...').start();
+  const spinner = ora('🔍 Mencari shortcut dan executable...').start();
+
+  const searchPaths = [
+    path.join(process.env.USERPROFILE || '', 'Desktop'),
+    path.join(process.env.APPDATA || '', 'Microsoft\\Windows\\Start Menu\\Programs'),
+  ];
+
+  let allExecutables = [];
 
   try {
-    const results = await Promise.all(paths.map((p) => runScanThread(p)));
-    const allGames = results.flat();
-    spinner.succeed('✅ Game ditemukan');
+    for (const p of searchPaths) {
+      const matches = glob.sync(`${p}/**/*.{exe,lnk}`, { nocase: true });
+      allExecutables.push(...matches);
+    }
+
+    if (allExecutables.length === 0) {
+      spinner.fail('Tidak ditemukan file .exe atau shortcut.');
+      return;
+    }
+
+    spinner.succeed(`✅ Ditemukan ${allExecutables.length} file.`);
+
+    const { keyword } = await inquirer.prompt({
+      type: 'input',
+      name: 'keyword',
+      message: '🔍 Ketik nama game (contoh: genshin):',
+    });
+
+    const filtered = allExecutables.filter(f => f.toLowerCase().includes(keyword.toLowerCase()));
+
+    if (filtered.length === 0) {
+      console.log(chalk.red('❌ Tidak ditemukan hasil dengan nama tersebut.'));
+      return;
+    }
 
     const { selected } = await inquirer.prompt({
       type: 'list',
       name: 'selected',
-      message: 'Pilih game:',
-      choices: allGames.map((g) => ({ name: g.name || path.basename(g.path), value: g.path })),
+      message: 'Pilih file untuk dijalankan:',
+      choices: filtered.map(f => ({
+        name: path.basename(f),
+        value: f
+      }))
     });
 
-    exec(`"${selected}"`);
+    exec(`start "" "${selected}"`);
   } catch (err) {
-    spinner.fail('❌ Gagal scan game.');
+    spinner.fail('❌ Gagal mencari file.');
     console.error(err);
   }
 }
