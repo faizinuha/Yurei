@@ -47,6 +47,11 @@ Remove/install.cmd
 ```bash
 curl -s https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install-universal.sh | bash
 ```
+### windows
+```bash
+ powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; Install.ps1"
+```
+
 ### 🔄 Alternatif (Tanpa Clone)
 ```bash
 npx github:faizinuha/Yuri-Install

@@ -22,10 +22,7 @@ if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "darwin"* ]]; then
   fi
 
   echo "🎉 Instalasi selesai. Jalankan 'yurei menu' untuk memulai."
-
 else
-  echo "🪟 Deteksi Windows/PowerShell"
-  echo "➡️ Menjalankan installer PowerShell..."
-
-  powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; ./Install.ps1"
+  echo "❌ Sistem operasi tidak didukung. Hanya Linux dan macOS yang didukung."
+  exit 1
 fi
