@@ -24,8 +24,8 @@ if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "darwin"* ]]; then
   echo "🎉 Instalasi selesai. Jalankan 'yurei menu' untuk memulai."
 
 else
-  echo "🪟 Deteksi PowerShell (Windows)"
+  echo "🪟 Deteksi Windows/PowerShell"
   echo "➡️ Menjalankan installer PowerShell..."
 
-  powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install.ps1 -OutFile install.ps1; ./install.ps1"
+  powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; ./Install.ps1"
 fi
