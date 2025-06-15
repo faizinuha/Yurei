@@ -40,16 +40,14 @@
 2. Jalankan `install.cmd` (klik dua kali atau via CMD):
 
 ```bash
-install.cmd
+Remove/install.cmd
 ```
 
 ### 🐧 Linux / macOS
 ```bash
-curl -s https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install-universal.sh | bash
 ```
-
 ### 🔄 Alternatif (Tanpa Clone)
-
 ```bash
 npx github:faizinuha/Yuri-Install
 ```
@@ -72,8 +70,6 @@ Yuri-Install/
 │   └── asciiWelcome.js   # Teks welcome (easter egg)
 ├── Worker/
 │   └── ScanWorker.js     # Worker thread pencari game
-├── install.cmd           # Installer untuk Windows
-├── install.sh            # Installer untuk Linux/macOS
 ├── package.json
 └── README.md
 ```

@@ -15,12 +15,18 @@ import { asciiWelcome } from '../utils/asciiWelcome.js';
 
 
 const program = new Command();
-program.name('yurei').description('CLI sayangku yang paling manis').version('2.0.0');
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
+
 // === Commander Command ===
+program
+  .name('yurei')
+  .description('Yurei CLI - Launcher terminal serbaguna dan ringan')
+  .version('2.0.0');
 
 program
   .command('menu')
@@ -30,7 +36,6 @@ program
     await asciiWelcome();
     await menuUtama();
   });
-
 program
   .command('whoami')
   .alias('W')
@@ -38,8 +43,8 @@ program
   .action(() => {
     console.log(chalk.blueBright(`👻 Nama tool ini: Yurei CLI\n❤️ Dibuat oleh: Sayang Ku\n✨ Versi: 2.0.0`));
   });
-
 program.parse(process.argv);
+
 
 // === === === === === //
 // === Menu Interaktif === //
@@ -149,3 +154,45 @@ async function jalankanGame() {
     console.error(err);
   }
 }
+
+// === Konfigurasi Yurei === //
+const configPath = path.join(__dirname, '../config/default.json');
+
+function resolveEnvPath(str) {
+  return str.replace('%APPDATA%', process.env.APPDATA || '');
+}
+// Loader config
+let yureiConfig = {
+  apps: {},
+  searchPaths: []
+};
+
+if (fs.existsSync(configPath)) {
+  try {
+    const raw = fs.readFileSync(configPath, 'utf-8');
+    const parsed = JSON.parse(raw);
+
+    yureiConfig.apps = parsed.apps || {};
+    yureiConfig.searchPaths = (parsed.searchPaths || []).map(resolveEnvPath);
+
+  } catch (err) {
+    console.error("⚠️ Gagal membaca config Yurei:", err.message);
+  }
+} else {
+  console.warn("⚠️ Config default.json tidak ditemukan. Menggunakan nilai kosong.");
+}
+
+
+// === Slogan Yurei === //
+const slogans = [
+  'Smart launcher for terminal productivity',
+  'Built for speed, designed for flow',
+  'Seamless access from shell to system',
+  'Simple CLI. Serious control.',
+  'Launcher terminal yang bisa kamu andalkan',
+  'Terminal rasa lokal, performa global',
+  'Faster workflows, cleaner terminal',
+  'One CLI to launch them all',
+  'Interface modern, semangat klasik',
+  'Teknologi praktis, tanpa basa-basi'
+];

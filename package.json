@@ -1,9 +1,11 @@
 {
   "name": "yurei-cli",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Linux Command Line Interface Tool",
   "bin": {
-    "yurei": "./bin/yurei.js"
+    "yurei": "./bin/yurei.js",
+    "build": "pkg . --targets node22-win-x64 --output yurei.exe",
+    "release:zip": "bash build-zip.sh"
   },
   "keywords": [
     "cli",
@@ -20,6 +22,7 @@
     "figlet": "^1.8.1",
     "glob": "^11.0.3",
     "inquirer": "^9.1.0",
-    "open": "^9.0.0"
+    "open": "^9.0.0",
+    "pkg": "^5.8.1"
   }
 }
