@@ -19,6 +19,13 @@
 > 🌸 *"Jiwa developer modern tapi tetap oldschool."*
 
 ---
+====================================================
+### ✨ Tampilan
+
+<p align="center">
+  <img src="./doc/image.png" alt="Yurei CLI Screenshot" width="600">
+  </p>
+====================================================
 
 ## ✨ Fitur Utama
 
@@ -27,6 +34,7 @@
 - 🛠️ `yurei install [--save-dev]` — Simulasi perintah install
 - ⚙️ `yurei config` — Tambah, lihat, dan hapus path app secara lokal
 - 🔍 `yurei search <filename>` — Cari file dan buka foldernya di Explorer
+- 🔍 `yurei launch discord` — Launcher Discord
 - 🧠 `yurei whoami` — Lihat info tentang Yurei CLI (tanpa spoiler!)
 - 🧠 `yurei menu` — Menu interaktif ala GUI di terminal
 
