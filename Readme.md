@@ -101,3 +101,8 @@ open-source and a touch of waifu magic ✨
 Kalau Anda suka tools ini, jangan lupa bintangin repo-nya di GitHub ya! 🌟
 https://github.com/faizinuha/Yuri-Install
 ```
+## download
+```bash
+## 📦 Download
+Grab the latest release:
+➡️ [Yurei CLI v1.0.5 (zip)](https://github.com/faizinuha/Yuri-Install/releases)
