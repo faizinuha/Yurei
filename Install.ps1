@@ -46,10 +46,10 @@ Pop-Location
 
 # Create batch wrapper
 Write-Host "🔧 Creating command wrapper..." -ForegroundColor Yellow
-$batchContent = @"
+$batchContent = @'
 @echo off
-node "$yureiDir\bin\yurei.js" %*
-"@
+node "%LOCALAPPDATA%\Yurei\bin\yurei.js" %*
+'@
 $batchContent | Out-File -FilePath $yureiExe -Encoding ASCII
 
 # Add to PATH

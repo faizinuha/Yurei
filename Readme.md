@@ -25,6 +25,10 @@
 <p align="center">
   <img src="./doc/image.png" alt="Yurei CLI Screenshot" width="600">
   </p>
+
+<p align="center">
+  <img src="./doc/image12.png" alt="Yurei CLI Screenshot" width="600">
+  </p>
 ====================================================
 
 ## ✨ Fitur Utama
@@ -58,7 +62,7 @@ curl -s https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install-un
 ### windows
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile install.ps1; powershell -ExecutionPolicy Bypass -File ./install.ps1"
+powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile install.ps1; powershell -ExecutionPolicy Bypass -File ./Install.ps1"
 ```
 
 ### 🔄 Alternatif (Tanpa Clone)
