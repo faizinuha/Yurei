@@ -1,7 +1,7 @@
 Write-Host "🌸 Yurei CLI Installer for Windows" -ForegroundColor Magenta
 Write-Host "-----------------------------------"
 
-$installDeps = Read-Host "📦 Ingin jalankan 'npm install'? (y/n)"
+$installDeps = Read-Host "Ingin jalankan 'npm install'? (y/n)"
 if ($installDeps -eq "y") {
   npm install
   if ($LASTEXITCODE -ne 0) {
@@ -9,7 +9,7 @@ if ($installDeps -eq "y") {
   }
 }
 
-$linkGlobal = Read-Host "🔗 Ingin menjalankan 'npm link' untuk install global? (y/n)"
+$linkGlobal = Read-Host "Ingin menjalankan 'npm link' untuk install global? (y/n)"
 if ($linkGlobal -eq "y") {
   npm link
   if ($LASTEXITCODE -ne 0) {

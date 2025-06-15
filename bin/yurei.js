@@ -15,8 +15,6 @@ import { asciiWelcome } from '../utils/asciiWelcome.js';
 
 
 const program = new Command();
-
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -181,18 +179,3 @@ if (fs.existsSync(configPath)) {
 } else {
   console.warn("⚠️ Config default.json tidak ditemukan. Menggunakan nilai kosong.");
 }
-
-
-// === Slogan Yurei === //
-const slogans = [
-  'Smart launcher for terminal productivity',
-  'Built for speed, designed for flow',
-  'Seamless access from shell to system',
-  'Simple CLI. Serious control.',
-  'Launcher terminal yang bisa kamu andalkan',
-  'Terminal rasa lokal, performa global',
-  'Faster workflows, cleaner terminal',
-  'One CLI to launch them all',
-  'Interface modern, semangat klasik',
-  'Teknologi praktis, tanpa basa-basi'
-];

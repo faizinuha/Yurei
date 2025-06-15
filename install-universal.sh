@@ -8,18 +8,24 @@ if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "darwin"* ]]; then
   echo "🟢 Linux/macOS terdeteksi"
   
   echo "🌸 Memulai instalasi Yurei CLI untuk Linux/macOS..."
-  read -p "📦 Jalankan 'npm install'? (y/n): " installDeps
-  if [[ "$installDeps" == "y" ]]; then
-    npm install || { echo "❌ Gagal install dependency."; exit 1; }
-  fi
+  
+  while true; do
+    read -p "📦 Jalankan 'npm install'? (y/n): " installDeps
+    case $installDeps in
+      [Yy]* ) npm install || { echo "❌ Gagal install dependency."; exit 1; }; break;;
+      [Nn]* ) break;;
+      * ) echo "Silakan jawab dengan 'y' atau 'n'.";;
+    esac
+  done
 
-  read -p "🔗 Ingin meng-link Yurei secara global (npm link)? (y/n): " doLink
-  if [[ "$doLink" == "y" ]]; then
-    npm link || { echo "❌ Gagal link global."; exit 1; }
-    echo "✅ Yurei CLI berhasil di-link secara global!"
-  else
-    echo "⚠️ Anda dapat menjalankan secara lokal via: node bin/yurei.js"
-  fi
+  while true; do
+    read -p "🔗 Ingin meng-link Yurei secara global (npm link)? (y/n): " doLink
+    case $doLink in
+      [Yy]* ) npm link || { echo "❌ Gagal link global."; exit 1; }; echo "✅ Yurei CLI berhasil di-link secara global!"; break;;
+      [Nn]* ) echo "⚠️ Anda dapat menjalankan secara lokal via: node bin/yurei.js"; break;;
+      * ) echo "Silakan jawab dengan 'y' atau 'n'.";;
+    esac
+  done
 
   echo "🎉 Instalasi selesai. Jalankan 'yurei menu' untuk memulai."
 else
