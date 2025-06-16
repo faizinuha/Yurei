@@ -44,6 +44,14 @@
 
 ---
 
+## 🛠️ Requirements
+
+- Windows 10/11
+- Node.js 16+ ([Download](https://nodejs.org))
+
+## 📞 Support
+
+Jika ada masalah, buat issue di GitHub.
 ## 📦 Instalasi
 
 ### 🪟 Windows
@@ -62,20 +70,8 @@ curl -s https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install-un
 ### windows ( Jika Gagal )
 
 ```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; powershell -ExecutionPolicy Bypass -File .\Install.ps1"
+powershell -ExecutionPolicy Bypass -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; .\Install.ps1"
 ```
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install-Enhanced.ps1 -OutFile Install-Enhanced.ps1; powershell -ExecutionPolicy Bypass -File .\Install-Enhanced.ps1"
-```
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install-Enhanced.ps1  -OutFile Install-Enhanced.ps1 -Force; powershell -ExecutionPolicy Bypass -File .\Install-Enhanced.ps1 -Force"
-```
-
 ### 🔄 Alternatif (Tanpa Clone)
 ```bash
 npx github:faizinuha/Yuri-Install
