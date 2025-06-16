@@ -59,15 +59,20 @@ Remove/install.cmd
 ```bash
 curl -s https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install-universal.sh | bash
 ```
-### windows
+### windows ( Jika Gagal )
+
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; powershell -ExecutionPolicy Bypass -File .\Install.ps1" ( Jika Gagal )
+powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; powershell -ExecutionPolicy Bypass -File .\Install.ps1"
+```
 
-OPSI 1 
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install-Enhanced.ps1 -OutFile Install-Enhanced.ps1; powershell -ExecutionPolicy Bypass -File .\Install-Enhanced.ps1"
+```
 
-OPSI 2
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 powershell -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install-Enhanced.ps1  -OutFile Install-Enhanced.ps1 -Force; powershell -ExecutionPolicy Bypass -File .\Install-Enhanced.ps1 -Force"
 ```
 
