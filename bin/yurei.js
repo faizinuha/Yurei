@@ -38,6 +38,10 @@ program
   .version('2.0.0');
 
 program
+.name('yurie')
+.description('Maaf Program Tidak Di temuka Mohon Ketik Berikut ( yurei ) ')
+
+program
   .command('menu')
   .alias('M')
   .description('Tampilkan menu interaktif')
@@ -64,7 +68,7 @@ async function menuUtama() {
         {
           type: 'list',
           name: 'action',
-          message: chalk.greenBright('✨ Pilih aksi:'),
+          message: chalk.greenBright('✨ Pilih Opsi....:'),
           choices: [
             { name: '🌐 Buka Website', value: 'browser' },
             { name: '🎮 Jalankan Game/Aplikasi', value: 'game' },
@@ -241,7 +245,7 @@ async function scanGameOtomatis() {
       
       try {
         // Cari file executable dan shortcut
-        const files = glob.sync(`${gamePath}/**/*.{exe,lnk}`, { 
+        const files = glob.sync(`${gamePath}/**/*.{exe,lnk,launcher}`, { 
           nocase: true, 
           maxDepth: 3,
           ignore: [

@@ -189,7 +189,7 @@ if ((Test-Path $cmdFile) -and (Test-Path $mainScript)) {
             @{ Label = "OS"; Value = if ($osInfo) { $osInfo.Caption } else { "Windows" } },
             @{ Label = "Kernel"; Value = if ($osInfo) { $osInfo.Version } else { $env:PROCESSOR_ARCHITECTURE } },
             @{ Label = "Uptime"; Value = "$uptimeHours hours" },
-            @{ Label = "Shell"; Value = "PowerShell" },
+            @{ Label = "Shell"; Value = "PowerShell","CMD" },
             @{ Label = "Terminal"; Value = if ($env:TERM_PROGRAM) { $env:TERM_PROGRAM } else { "Windows Terminal" } },
             @{ Label = "CPU"; Value = if ($cpuInfo) { $cpuInfo.Name.Substring(0, [Math]::Min(40, $cpuInfo.Name.Length)) } else { "Unknown" } },
             @{ Label = "RAM"; Value = "$usedMemGB GB / $totalMemGB GB" },
@@ -221,7 +221,8 @@ if ((Test-Path $cmdFile) -and (Test-Path $mainScript)) {
         Write-Host "Installation: Success" -ForegroundColor Green
     }
     
-    Write-Host ""
+    Write-Host "=================================================================="
+    Write-Host "----- Selamat Datang DI Yurie Tool ----- " -ForegroundColor Cyan
     Write-Host "Next steps:" -ForegroundColor Cyan
     Write-Host "1. Restart terminal (or run: refreshenv)" -ForegroundColor White
     Write-Host "2. Run: yurei menu" -ForegroundColor White
@@ -229,7 +230,7 @@ if ((Test-Path $cmdFile) -and (Test-Path $mainScript)) {
     Write-Host "Commands available:" -ForegroundColor Yellow
     Write-Host "  yurei menu     - Main interactive menu" -ForegroundColor Gray
     Write-Host "  yurei whoami   - CLI information" -ForegroundColor Gray
-    Write-Host ""
+    Write-Host "=================================================================="
     
 } else {
     Write-Host "ERROR: Installation verification failed" -ForegroundColor Red
