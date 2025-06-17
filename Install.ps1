@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 param([switch]$Force)
 
-# Yurei CLI Installer - Fixed Version
+# Yurei CLI Installer with Fixed System Info Display
 $ErrorActionPreference = "Stop"
 
 Write-Host "=== Yurei CLI Installer ===" -ForegroundColor Cyan
@@ -58,7 +58,7 @@ try {
     Write-Host "Extracting files..." -ForegroundColor Yellow
     Expand-Archive -Path $tempZip -DestinationPath $tempDir -Force
     
-    # Find extracted folder (should be "Yuri-Install-main")
+    # Find extracted folder
     $sourceDir = Get-ChildItem $tempDir -Directory | Where-Object { $_.Name -like "*Yuri-Install*" } | Select-Object -First 1
     
     if (-not $sourceDir) {
@@ -134,14 +134,103 @@ if ((Test-Path $cmdFile) -and (Test-Path $mainScript)) {
     Write-Host "SUCCESS! Yurei CLI installed" -ForegroundColor Green
     Write-Host "=========================" -ForegroundColor Green
     Write-Host ""
-    Write-Host "Command: yurei menu" -ForegroundColor Cyan
-    Write-Host "Location: $installDir" -ForegroundColor Gray
+    
+    # === FIXED SYSTEM INFO DISPLAY ===
+    Write-Host "System Information:" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "Next steps:" -ForegroundColor Yellow
-    Write-Host "1. Restart terminal" -ForegroundColor White
+    
+    try {
+        # Get system info safely
+        $hostname = $env:COMPUTERNAME.ToLower()
+        $username = $env:USERNAME.ToLower()
+        $osInfo = Get-CimInstance -ClassName Win32_OperatingSystem -ErrorAction SilentlyContinue
+        $cpuInfo = Get-CimInstance -ClassName Win32_Processor -ErrorAction SilentlyContinue | Select-Object -First 1
+        $memInfo = Get-CimInstance -ClassName Win32_ComputerSystem -ErrorAction SilentlyContinue
+        $diskInfo = Get-CimInstance -ClassName Win32_LogicalDisk -ErrorAction SilentlyContinue | Where-Object { $_.DriveType -eq 3 } | Select-Object -First 1
+        
+        # Calculate memory safely
+        $totalMemGB = if ($memInfo) { [math]::Round($memInfo.TotalPhysicalMemory / 1GB, 1) } else { "N/A" }
+        $freeMemGB = if ($osInfo) { [math]::Round($osInfo.FreePhysicalMemory / 1MB / 1024, 1) } else { "N/A" }
+        $usedMemGB = if ($totalMemGB -ne "N/A" -and $freeMemGB -ne "N/A") { [math]::Round($totalMemGB - $freeMemGB, 1) } else { "N/A" }
+        
+        # Calculate disk safely
+        $diskTotalGB = if ($diskInfo) { [math]::Round($diskInfo.Size / 1GB) } else { "N/A" }
+        $diskFreeGB = if ($diskInfo) { [math]::Round($diskInfo.FreeSpace / 1GB) } else { "N/A" }
+        $diskUsedGB = if ($diskTotalGB -ne "N/A" -and $diskFreeGB -ne "N/A") { $diskTotalGB - $diskFreeGB } else { "N/A" }
+        
+        # Uptime safely
+        $uptimeHours = if ($osInfo) { [math]::Floor(((Get-Date) - $osInfo.LastBootUpTime).TotalHours) } else { "N/A" }
+        
+        # Simple ASCII Art (Fixed)
+        $asciiLines = @(
+            "                          ",
+            "        .oyhhs:           ",
+            "     ..-......shhhhhhh-   ",
+            "  -+++++++++++:yyhyyo     ",
+            " -+++++++++++/-..-::      ",
+            ".::::::-    :---:::/+++/++/",
+            ".::::::.        :++++++:  ",
+            "-::::::-.           .+++++++- ",
+            "-::::::::             .++++++-",
+            " -::::::-               //////:",
+            "  -::::-                      ",
+            "     .:::::-                   ",
+            "       -ohhhhhhh+              ",
+            "        :yhhhhhh:              ",
+            "         /hhhhhhhv+....        ",
+            "          /hhhhhhhhhh-         ",
+            "           .:://:::-           "
+        )
+        
+        # System info data
+        $systemData = @(
+            @{ Label = "User"; Value = $username },
+            @{ Label = "Hostname"; Value = $hostname },
+            @{ Label = "OS"; Value = if ($osInfo) { $osInfo.Caption } else { "Windows" } },
+            @{ Label = "Kernel"; Value = if ($osInfo) { $osInfo.Version } else { $env:PROCESSOR_ARCHITECTURE } },
+            @{ Label = "Uptime"; Value = "$uptimeHours hours" },
+            @{ Label = "Shell"; Value = "PowerShell" },
+            @{ Label = "Terminal"; Value = if ($env:TERM_PROGRAM) { $env:TERM_PROGRAM } else { "Windows Terminal" } },
+            @{ Label = "CPU"; Value = if ($cpuInfo) { $cpuInfo.Name.Substring(0, [Math]::Min(40, $cpuInfo.Name.Length)) } else { "Unknown" } },
+            @{ Label = "RAM"; Value = "$usedMemGB GB / $totalMemGB GB" },
+            @{ Label = "Disk"; Value = "$diskUsedGB GB / $diskTotalGB GB" },
+            @{ Label = "Node.js"; Value = $nodeVersion }
+        )
+        
+        # Display side by side
+        for ($i = 0; $i -lt [Math]::Max($asciiLines.Count, $systemData.Count); $i++) {
+            $asciiLine = if ($i -lt $asciiLines.Count) { $asciiLines[$i] } else { " " * 26 }
+            
+            Write-Host $asciiLine -ForegroundColor Yellow -NoNewline
+            
+            if ($i -lt $systemData.Count) {
+                $data = $systemData[$i]
+                Write-Host "  " -NoNewline
+                Write-Host "$($data.Label):" -ForegroundColor Red -NoNewline
+                Write-Host " $($data.Value)" -ForegroundColor White
+            } else {
+                Write-Host ""
+            }
+        }
+        
+    } catch {
+        # Fallback simple display
+        Write-Host "User: $username" -ForegroundColor White
+        Write-Host "Hostname: $hostname" -ForegroundColor White
+        Write-Host "Node.js: $nodeVersion" -ForegroundColor White
+        Write-Host "Installation: Success" -ForegroundColor Green
+    }
+    
+    Write-Host ""
+    Write-Host "Next steps:" -ForegroundColor Cyan
+    Write-Host "1. Restart terminal (or run: refreshenv)" -ForegroundColor White
     Write-Host "2. Run: yurei menu" -ForegroundColor White
     Write-Host ""
-    Write-Host "If command not found, restart terminal!" -ForegroundColor Blue
+    Write-Host "Commands available:" -ForegroundColor Yellow
+    Write-Host "  yurei menu     - Main interactive menu" -ForegroundColor Gray
+    Write-Host "  yurei whoami   - CLI information" -ForegroundColor Gray
+    Write-Host ""
+    
 } else {
     Write-Host "ERROR: Installation verification failed" -ForegroundColor Red
     Write-Host "Missing files:" -ForegroundColor Red

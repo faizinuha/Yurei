@@ -21,15 +21,30 @@
 ---
 ====================================================
 ### ✨ Tampilan
-
-<p align="center">
+---
+<p align="">
   <img src="./doc/image.png" alt="Yurei CLI Screenshot" width="600">
   </p>
-
-<p align="center">
+---
+<p align="">
   <img src="./doc/image12.png" alt="Yurei CLI Screenshot" width="600">
   </p>
-====================================================
+---
+
+
+## ✨ Update 2.0.0
+```
+## Yurei CLI - Versi 2.0.0
+Yurei CLI kini hadir dengan
+fitur baru yang lebih canggih!
+Dengan versi 2.0.0, Anda bisa
+menikmati pengalaman terminal
+yang lebih interaktif dan mudah digunakan.
+```
+<p align="">
+  <img src="./doc/image3.png" alt="Yurei CLI Screenshot" width="600">
+  </p>
+
 
 ## ✨ Fitur Utama
 
