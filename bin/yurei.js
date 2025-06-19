@@ -40,6 +40,7 @@ program
 program
 .name('yurie')
 .description('Maaf Program Tidak Di temuka Mohon Ketik Berikut ( yurei ) ')
+.version('2.0.0');
 
 program
   .command('menu')
