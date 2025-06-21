@@ -56,7 +56,7 @@ yang lebih interaktif dan mudah digunakan.
 - 🔍 `yurei launch discord` — Launcher Discord
 - 🧠 `yurei whoami` — Lihat info tentang Yurei CLI (tanpa spoiler!)
 - 🧠 `yurei menu` — Menu interaktif ala GUI di terminal
-
+- ⚙️ `ysys help` — Tampilkan bantuan dan daftar perintah
 ---
 
 ## 🛠️ Requirements
@@ -87,6 +87,7 @@ curl -s https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/install-un
 ```powershell
 powershell -ExecutionPolicy Bypass -Command "iwr https://raw.githubusercontent.com/faizinuha/Yuri-Install/main/Install.ps1 -OutFile Install.ps1; .\Install.ps1"
 ```
+
 ### 🔄 Alternatif (Tanpa Clone)
 ```bash
 npx github:faizinuha/Yuri-Install
@@ -98,7 +99,10 @@ git clone https://github.com/faizinuha/Yuri-Install.git
 cd Yuri-Install
 npm install && npm link
 ```
-
+### 🏁 Alternatif
+```bash
+-> : npm i yurei-cli
+```
 =================================================
 
 #### 📁 Struktur Proyek
