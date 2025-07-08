@@ -23,11 +23,11 @@
 ### ✨ Tampilan
 ---
 <p align="">
-  <img src="./doc/image.png" alt="Yurei CLI Screenshot" width="600">
+  <img src="doc/image.png" alt="Yurei CLI Screenshot" width="600">
   </p>
 ---
 <p align="">
-  <img src="./doc/image12.png" alt="Yurei CLI Screenshot" width="600">
+  <img src="doc/image12.png" alt="Yurei CLI Screenshot" width="600">
   </p>
 ---
 
