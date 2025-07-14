@@ -5,6 +5,7 @@
   "bin": {
     "yurei": "./bin/yurei.js",
     "ysys": "./bin/ysys.js",
+    "password": "./bin/password.js", 
     "build": "pkg . --targets node18-win-x64 --output yurei.exe"
   },
   "keywords": [

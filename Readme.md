@@ -59,6 +59,27 @@ yang lebih interaktif dan mudah digunakan.
 - ⚙️ `ysys help` — Tampilkan bantuan dan daftar perintah
 ---
 
+### 🔐 PasswordGen - Password Generator
+
+```bash
+# Basic Usage
+passwordgen                    # 12 chars, lowercase
+passwordgen 15 lower           # 15 chars, lowercase
+passwordgen 16 all             # 16 chars, all types
+passwordgen 12 safe            # 12 chars, safe (no symbols)
+
+# Multiple Passwords
+passwordgen 12 all 5x          # Generate 5 passwords
+passwordgen 15 lower 3x        # 3 lowercase passwords
+
+# Character Types
+passwordgen 20 upper lower     # Upper + lowercase
+passwordgen 8 number           # Numbers only (PIN-like)
+passwordgen 16 symbol          # With symbols
+
+# Help
+passwordgen help               # Show all options
+```
 ## 🛠️ Requirements
 
 - Windows 10/11
