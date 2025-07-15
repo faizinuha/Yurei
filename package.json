@@ -1,11 +1,12 @@
 {
   "name": "yurei-cli",
-  "version": "3.0.0",
-  "description": "Linux Command Line Interface Tool",
+  "version": "3.0.3",
+  "description": "🌸 Linux Command Line Interface Tool",
   "bin": {
     "yurei": "./bin/yurei.js",
     "ysys": "./bin/ysys.js",
     "password": "./bin/password.js",
+    "yurei-old": "./bin/yurei-old.js",
     "build": "pkg . --targets node18-win-x64 --output yurei.exe"
   },
   "keywords": [
@@ -33,6 +34,7 @@
     "os": "^0.1.2",
     "pkg": "^5.8.1",
     "gradient-string": "^2.0.2",
-    "boxen": "^7.1.1"
+    "boxen": "^7.1.1",
+    "semver": "^7.5.4"
   }
 }

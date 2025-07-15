@@ -48,19 +48,40 @@ yang lebih interaktif dan mudah digunakan.
 
 ## ✨ Fitur Utama
 
-- 🔗 `yurei open <site>` — Buka website populer atau custom (YouTube, Instagram, dll)
-- 🚀 `yurei run <app>` — Jalankan aplikasi atau game dari konfigurasi path
-- 🛠️ `yurei install [--save-dev]` — Simulasi perintah install
-- ⚙️ `yurei config` — Tambah, lihat, dan hapus path app secara lokal
-- 🔍 `yurei search <filename>` — Cari file dan buka foldernya di Explorer
-- 🔍 `yurei launch discord` — Launcher Discord
-- 🧠 `yurei whoami` — Lihat info tentang Yurei CLI (tanpa spoiler!)
-- 🧠 `yurei menu` — Menu interaktif ala GUI di terminal
-- ⚙️ `ysys help` — Tampilkan bantuan dan daftar perintah
+```bash
+| Direct Website Commands: | 
+yurei youtube              # Open YouTube
+yurei github               # Open GitHub  
+yurei instagram            # Open Instagram
+yurei google               # Open Google
+yurei chatgpt              # Open ChatGPT
+yurei tokopedia            # Open Tokopedia
+yurei netflix              # Open
+
+| File Commands: |
+
+yurei folder               # Open CLI folder
+yurei open C:\Users        # Open any folder
+yurei open D:\Games        # Open Games folder
+
+| Search & Web: |
+yurei search programming   # Google search
+yurei web youtube.com      # Open any URL
+yurei youtube -b chrome    # Choose browser
+
+|  Info Commands: | 
+yurei list                 # Show all available Web
+yurei whoami               # CLI info
+yurei --help               # Show help
+
+| Yurei-old Version 3.0.0: |
+yurei-old      -> Change to yurei-old Not 
+| News Yurei 3.0.3 |
+yurei                # Not yurei-old news -> Yurei 
+```
+
 ---
-
 ### 🔐 PasswordGen - Password Generator
-
 ```bash
 # Basic Usage
 passwordgen                    # 12 chars, lowercase
